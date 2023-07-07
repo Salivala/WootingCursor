@@ -1,7 +1,7 @@
 # WootingCursor
 Mouse control service designed for wooting hall effect keyboards. Also supports analog mouse scrolling. 
 
-Currently, binding are hard-coded. Here are the keys: 
+Currently, bindings are hard-coded. Here are the keys: 
 
 * F13 -> Mouse movement left
 * F14 -> Mouse movement down
