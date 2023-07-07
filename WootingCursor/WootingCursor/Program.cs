@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using WootingAnalogSDKNET;
 namespace WootingCursor
 {
@@ -13,29 +14,15 @@ namespace WootingCursor
             }
         }
 
-        static void TestSpeedN<T>(Stopwatch sw, Func<T> call, string name, int n)
-        {
-            for (int i = 0; i < n; i++)
-            {
-                TestSpeed<T>(sw, call, $"Call {i} {name}");
-            }
-        }
-        static void TestSpeed<T>(Stopwatch sw, Func<T> call, string name)
-        {
-            sw.Reset();
-            sw.Start();
-            var r = call.Invoke();
-            sw.Stop();
-            Console.WriteLine($"{name} call time: {sw.ElapsedTicks} ticks, {sw.ElapsedMilliseconds}ms, result: {r}");
-        }
+        [DllImport("user32.dll")]
+        static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, UIntPtr dwExtraInfo);
 
+        private const uint MOUSEEVENTF_WHEEL = 0x0800;
 
         static List<(KeycodeType, ushort)> code_map = new List<(KeycodeType, ushort)>()
         {
             (KeycodeType.HID, 0x14),
             (KeycodeType.ScanCode1, 0x50),
-            //(Native.KeycodeType.VirtualKey, (ushort)VirtualKeys.Numpad7),
-            //(Native.KeycodeType.VirtualKeyTranslate, (ushort)VirtualKeys.Down),
         };
 
         static int _index = 0;
@@ -55,24 +42,17 @@ namespace WootingCursor
             Console.WriteLine("test");
             if(deviceNo >= 0)
             {
-                Console.WriteLine("We got some devices");
+                //Console.WriteLine("We got some devices");
                 WootingAnalogSDK.DeviceEvent += device_event_cb;
                 Stopwatch sw = new Stopwatch();
-                TestSpeedN(sw, () => WootingAnalogSDK.ReadAnalog(4), $"read analog HID", 5);
-                TestSpeedN(sw, () =>
-                {
-                    WootingAnalogSDK.SetKeycodeMode(KeycodeType.VirtualKey);
-                    return WootingAnalogSDK.ReadAnalog(30);
-                }, $"read analog SC", 5);
-                TestSpeedN(sw, () => WootingAnalogSDK.ReadFullBuffer(20), $"read_full_buffer", 5);
+                
                 var (devices, infoErr) = WootingAnalogSDK.GetConnectedDevicesInfo();
-                foreach (DeviceInfo dev in devices)
-                {
-                    Console.WriteLine($"Device info has: {dev}, {infoErr}");
+                //foreach (DeviceInfo dev in devices)
+                //{
+                //    Console.WriteLine($"Device info has: {dev}, {infoErr}");
 
-                }
-                //testSpeedN(sw, () => Native.wooting_analog_read_analog_vk(VirtualKeys.A, true), $"Local read analog VK (translate)", 5);
-                //testSpeedN(sw, () => Native.wooting_analog_read_analog_vk(VirtualKeys.A, false), $"Local read analog VK (no translate)", 5);
+                //}
+                
                 float val = 0;
                 string output = "";
                 WootingAnalogSDK.SetKeycodeMode(KeycodeType.VirtualKey);
@@ -88,32 +68,25 @@ namespace WootingCursor
                         }
                     }
 
-                    //var ret = Native.wooting_analog_read_analog_vk(VirtualKeys.A, false);
                     sw.Restart();
                     var (ret, error) = WootingAnalogSDK.ReadAnalog(code_map[_index].Item2);//, devices.First().device_id);
                     sw.Stop();
-                    //if (error == Native.AnalogSDKError.Ok && sw.ElapsedMilliseconds > 0)
-                    //    Console.WriteLine($"Warning: ReadAnalog {sw.ElapsedMilliseconds}ms");
+                    
                     if (!val.Equals(ret))
                     {
                         val = ret;
-                        Console.WriteLine($"Val is {val}, e {error}");
+                        //Console.WriteLine($"Val is {val}, e {error}");
                     }
 
                     sw.Restart();
                     var (read, readErr) = WootingAnalogSDK.ReadFullBuffer(20);
                     sw.Stop();
-                    //if (error == Native.AnalogSDKError.Ok && sw.ElapsedMilliseconds > 0)
-                    //    Console.WriteLine($"Warning: ReadFullBuffer {sw.ElapsedMilliseconds}ms");
+                   
                     string freshOutput = "";
                     if (readErr == WootingAnalogResult.Ok)
                     {
                         foreach (var analog in read)
                         {
-                            //VirtualKeys vk = (VirtualKeys)MapVirtualKey((uint)analog.Item1, MAPVK_VSC_TO_VK_EX);
-                            //uint scan = MapVirtualKey((uint)VirtualKeys.RightControl, MAPVK_VK_TO_VSC_EX);
-                            
-                            
                             if (code_map[_index].Item1 == KeycodeType.VirtualKey ||
                                 code_map[_index].Item1 == KeycodeType.VirtualKeyTranslate)
                             {
@@ -124,44 +97,38 @@ namespace WootingCursor
                             else
                             {
                                 freshOutput += $"(0x{analog.Item1.ToString("X4")},{analog.Item2})";
-                                //freshOutput += $"(0x{analog.Item1.ToString("X4")},{vk},{analog.Item2}) - {scan.ToString("X4")}";
-
-                                var virtualKeyVal = (short)VirtualKeys.F15;
-                                var analogVal = analog.Item1;
-                                //Console.WriteLine($"analogue val = {analogVal} and virtualKeyVal = {virtualKeyVal}");
-
 
                                 if (analog.Item1 == (short)VirtualKeys.F15)
                                 {
-                                    Console.WriteLine(analog.Item1.ToString());
-                                    Console.WriteLine("Wowo!!");
                                     Cursor.Position = new Point(
                                     Cursor.Position.X + (int)(ScaleNumber(analog.Item2)),
                                     Cursor.Position.Y);
                                 }
                                 if (analog.Item1 == (short)VirtualKeys.F14)
                                 {
-                                    Console.WriteLine(analog.Item1.ToString());
-                                    Console.WriteLine("Wowo!!");
                                     Cursor.Position = new Point(
                                     Cursor.Position.X,
                                     Cursor.Position.Y + (int)(ScaleNumber(analog.Item2)));
                                 }
                                 if (analog.Item1 == (short)VirtualKeys.F13)
                                 {
-                                    Console.WriteLine(analog.Item1.ToString());
-                                    Console.WriteLine("Wowo!!");
                                     Cursor.Position = new Point(
                                     Cursor.Position.X - (int)(ScaleNumber(analog.Item2)),
                                     Cursor.Position.Y);
                                 }
                                 if (analog.Item1 == (short)VirtualKeys.F16)
                                 {
-                                    Console.WriteLine(analog.Item1.ToString());
-                                    Console.WriteLine("Wowo!!");
                                     Cursor.Position = new Point(
                                     Cursor.Position.X,
                                     Cursor.Position.Y - (int)(ScaleNumber(analog.Item2)));
+                                }
+                                if (analog.Item1 == (short)VirtualKeys.F17)
+                                {
+                                    mouse_event(MOUSEEVENTF_WHEEL, 0, 0, (uint)(ScaleNumber(analog.Item2)) + 20, 0);
+                                }
+                                if (analog.Item1 == (short)VirtualKeys.F18)
+                                {
+                                    mouse_event(MOUSEEVENTF_WHEEL, 0, 0, 0-((uint)(ScaleNumber(analog.Item2)) + 20), 0);
                                 }
                             }
 
@@ -174,7 +141,7 @@ namespace WootingCursor
 
                     if (!freshOutput.Equals(output))
                     {
-                        Console.WriteLine(output = freshOutput);
+                        //Console.WriteLine(output = freshOutput);
                     }
                     Thread.Sleep(10);
                 }
@@ -186,7 +153,7 @@ namespace WootingCursor
 
         public static int ScaleNumber(float input)
         {
-            if (input < 0.02f)
+            if (input < 0.00f)
             {
                 return 0;
             }
@@ -196,9 +163,9 @@ namespace WootingCursor
                 return 40;
             }
 
-            // Linear interpolation
-            float scale = (input - 0.02f) / (1f - 0.02f);
-            int output = (int)Math.Round(scale * (30 - .5) + 1);
+            // Power bias
+            float scale = (float)Math.Pow((input - 0.02f) / (1f - 0.02f), 2);
+            int output = (int)Math.Round(scale * (40 - 1) + 1);
 
             return output;
         }
