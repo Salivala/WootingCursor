@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using WootingAnalogSDKNET;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+
 namespace WootingCursor
 {
     internal static class Program
@@ -42,21 +44,16 @@ namespace WootingCursor
             Console.WriteLine("test");
             if(deviceNo >= 0)
             {
-                //Console.WriteLine("We got some devices");
                 WootingAnalogSDK.DeviceEvent += device_event_cb;
                 Stopwatch sw = new Stopwatch();
                 
                 var (devices, infoErr) = WootingAnalogSDK.GetConnectedDevicesInfo();
-                //foreach (DeviceInfo dev in devices)
-                //{
-                //    Console.WriteLine($"Device info has: {dev}, {infoErr}");
-
-                //}
                 
                 float val = 0;
                 string output = "";
                 WootingAnalogSDK.SetKeycodeMode(KeycodeType.VirtualKey);
                 System.Threading.Timer timer = new System.Threading.Timer(timer_cb, _index, TimeSpan.Zero, TimeSpan.FromSeconds(4));
+                var microMovementQueueDictionary = new Dictionary<VirtualKeys, float>();
                 while (true)
                 {
 
@@ -67,7 +64,6 @@ namespace WootingCursor
                     if (!val.Equals(ret))
                     {
                         val = ret;
-                        //Console.WriteLine($"Val is {val}, e {error}");
                     }
 
                     sw.Restart();
@@ -89,31 +85,50 @@ namespace WootingCursor
                             else
                             {
                                 freshOutput += $"(0x{analog.Item1.ToString("X4")},{analog.Item2})";
-
                                 if (analog.Item1 == (short)VirtualKeys.F15)
                                 {
+                                    if (ManageMicroMovement(VirtualKeys.F15, analog.Item2, microMovementQueueDictionary))
+                                        continue;
+
+                                    var scaledNumber = (int)(ScaleNumber(analog.Item2));
                                     Cursor.Position = new Point(
-                                    Cursor.Position.X + (int)(ScaleNumber(analog.Item2)),
+                                    Cursor.Position.X + scaledNumber,
                                     Cursor.Position.Y);
                                 }
                                 if (analog.Item1 == (short)VirtualKeys.F14)
                                 {
+                                    if (ManageMicroMovement(VirtualKeys.F14, analog.Item2, microMovementQueueDictionary))
+                                        continue;
+
+                                    var scaledNumber = (int)(ScaleNumber(analog.Item2));
+
                                     Cursor.Position = new Point(
                                     Cursor.Position.X,
-                                    Cursor.Position.Y + (int)(ScaleNumber(analog.Item2)));
+                                    Cursor.Position.Y + scaledNumber);
                                 }
                                 if (analog.Item1 == (short)VirtualKeys.F13)
                                 {
+                                    if (ManageMicroMovement(VirtualKeys.F13, analog.Item2, microMovementQueueDictionary))
+                                        continue;
+
+                                    var scaledNumber = (int)(ScaleNumber(analog.Item2));
+
                                     Cursor.Position = new Point(
-                                    Cursor.Position.X - (int)(ScaleNumber(analog.Item2)),
+                                    Cursor.Position.X - scaledNumber,
                                     Cursor.Position.Y);
                                 }
                                 if (analog.Item1 == (short)VirtualKeys.F16)
                                 {
+                                    if (ManageMicroMovement(VirtualKeys.F16, analog.Item2, microMovementQueueDictionary))
+                                        continue;
+
+                                    var scaledNumber = (int)(ScaleNumber(analog.Item2));
+
                                     Cursor.Position = new Point(
                                     Cursor.Position.X,
-                                    Cursor.Position.Y - (int)(ScaleNumber(analog.Item2)));
+                                    Cursor.Position.Y - scaledNumber);
                                 }
+
                                 if (analog.Item1 == (short)VirtualKeys.F17)
                                 {
                                     mouse_event(MOUSEEVENTF_WHEEL, 0, 0, (uint)(ScaleNumber(analog.Item2)) + 20, 0);
@@ -135,13 +150,48 @@ namespace WootingCursor
                     {
                         //Console.WriteLine(output = freshOutput);
                     }
-                    Thread.Sleep(10);
+                    Thread.Sleep(1);
                 }
 
                 WootingAnalogSDK.UnInitialise();
             }
         }
 
+        /***
+         * @return if there will be no movement
+         */
+        public static bool ManageMicroMovement(VirtualKeys key, float analogPressure, Dictionary<VirtualKeys, float> microMovementDictionary)
+        {
+            if (analogPressure <= .3)
+            {
+                Debug.WriteLine("test");
+                if (microMovementDictionary.TryAdd(VirtualKeys.F15, analogPressure))
+                {
+                    if (microMovementDictionary[VirtualKeys.F15] >= 1)
+                    {
+                        microMovementDictionary.Remove(VirtualKeys.F15);
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    microMovementDictionary[VirtualKeys.F15] += analogPressure;
+                    if (microMovementDictionary[VirtualKeys.F15] >= 1)
+                    {
+                        microMovementDictionary.Remove(VirtualKeys.F15);
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+
+            }
+            return false;
+        }
 
         public static int ScaleNumber(float input)
         {
