@@ -21,3 +21,11 @@ C:\Users\sever\OneDrive\Desktop\wooting\wooting-cursor\WootingCursor\WootingCurs
 C:\Users\sever\OneDrive\Desktop\wooting\wooting-cursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.pdb
 C:\Users\sever\OneDrive\Desktop\wooting\wooting-cursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.genruntimeconfig.cache
 C:\Users\sever\OneDrive\Desktop\wooting\wooting-cursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\ref\WootingCursor.dll
+C:\Users\sever\OneDrive\others\Documents\GitHub\WootingCursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.csproj.AssemblyReference.cache
+C:\Users\sever\OneDrive\others\Documents\GitHub\WootingCursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sever\OneDrive\others\Documents\GitHub\WootingCursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.AssemblyInfoInputs.cache
+C:\Users\sever\OneDrive\others\Documents\GitHub\WootingCursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.AssemblyInfo.cs
+C:\Users\sever\OneDrive\others\Documents\GitHub\WootingCursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.csproj.CoreCompileInputs.cache
+C:\Users\sever\OneDrive\others\Documents\GitHub\WootingCursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.dll
+C:\Users\sever\OneDrive\others\Documents\GitHub\WootingCursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\refint\WootingCursor.dll
+C:\Users\sever\OneDrive\others\Documents\GitHub\WootingCursor\WootingCursor\WootingCursor\obj\Debug\net7.0-windows\WootingCursor.pdb

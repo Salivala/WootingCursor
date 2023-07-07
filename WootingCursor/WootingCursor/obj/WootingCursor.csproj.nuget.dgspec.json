@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\wooting-cursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj": {}
+    "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\analog-wrapper\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj": {
+    "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj": {
       "version": "0.5.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\analog-wrapper\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj",
+        "projectUniqueName": "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj",
         "projectName": "WootingAnalogSDK.NET",
-        "projectPath": "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\analog-wrapper\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj",
+        "projectPath": "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj",
         "packagesPath": "C:\\Users\\sever\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\analog-wrapper\\WootingAnalogSDK.NET\\obj\\",
+        "outputPath": "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingAnalogSDK.NET\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
@@ -71,14 +71,14 @@
         }
       }
     },
-    "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\wooting-cursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj": {
+    "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\wooting-cursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj",
+        "projectUniqueName": "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj",
         "projectName": "WootingCursor",
-        "projectPath": "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\wooting-cursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj",
+        "projectPath": "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj",
         "packagesPath": "C:\\Users\\sever\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\wooting-cursor\\WootingCursor\\WootingCursor\\obj\\",
+        "outputPath": "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingCursor\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -99,8 +99,8 @@
           "net7.0-windows7.0": {
             "targetAlias": "net7.0-windows",
             "projectReferences": {
-              "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\analog-wrapper\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj": {
-                "projectPath": "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\analog-wrapper\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj"
+              "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj": {
+                "projectPath": "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingAnalogSDK.NET\\WootingAnalogSDK.NET.csproj"
               }
             }
           }

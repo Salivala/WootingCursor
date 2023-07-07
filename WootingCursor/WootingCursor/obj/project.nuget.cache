@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/6X5YgpsUMknsxUc9JADznqRdphZ5RHKMy2qdQZ/TGmgGaFdq5A9vsQhimAMdDxV7Xi9kaMoIzTbNNBZw8JWgQ==",
+  "dgSpecHash": "LKA7QiNSZmCRxQx+PQaRqZfwceFOHHdwbJUfEj8TZI5J0tD9Z6hZG8xG0xbjLv6Brk7Pwn6jAx1yor24Eoc+aQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sever\\OneDrive\\Desktop\\wooting\\wooting-cursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj",
+  "projectFilePath": "C:\\Users\\sever\\OneDrive\\others\\Documents\\GitHub\\WootingCursor\\WootingCursor\\WootingCursor\\WootingCursor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sever\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512"
   ],
