@@ -11,3 +11,5 @@ Currently, bindings are hard-coded. Here are the keys:
 * F18 -> Scroll dowen
 
 All of these controls make use of the wooting analog sdk
+
+Here is the wooting 60he profile that I use: 0497e879bb1013a99ad64ec4eaebc072bfa3. You can access the mouse layer by holding caps lock and then holding alt. after that j k l i become mouse movement and y and h become scroll wheel movement. 
