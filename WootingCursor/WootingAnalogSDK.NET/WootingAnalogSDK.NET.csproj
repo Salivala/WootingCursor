@@ -30,18 +30,8 @@
       <PackagePath>runtimes/linux-x64/native</PackagePath>
     </Content>
 
-    <Content CopyToOutputDirectory="PreserveNewest" Pack="true" Include="..\libs\win-x64\wooting_analog_wrapper.dll" Link="runtimes/win-x64/native/wooting_analog_wrapper.dll">
-      <PackagePath>runtimes/win-x64/native</PackagePath>
-    </Content>
-
     <Content CopyToOutputDirectory="PreserveNewest" Pack="true" Include="..\libs\osx-x64\libwooting_analog_wrapper.dylib" Link="runtimes/osx-x64/native/libwooting_analog_wrapper.dylib">
       <PackagePath>runtimes/osx-x64/native</PackagePath>
-    </Content>
-    <Content Include="..\libs\win-x64\wooting_analog_wrapper.dll" Link="wooting_analog_wrapper.dll">
-      <Pack>true</Pack>
-      <PackagePath>content/net461;contentFiles/any/net461</PackagePath>
-      <PackageCopyToOutput>true</PackageCopyToOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
