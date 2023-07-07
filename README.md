@@ -1,5 +1,5 @@
 # WootingCursor
-Mouse control service designed for wooting lekker edition. Also supports analog mouse scrolling. 
+Mouse control service designed for wooting hall effect keyboards. Also supports analog mouse scrolling. 
 
 Currently, binding are hard-coded. Here are the keys: 
 
