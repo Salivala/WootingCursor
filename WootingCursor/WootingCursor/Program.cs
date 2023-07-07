@@ -59,14 +59,6 @@ namespace WootingCursor
                 System.Threading.Timer timer = new System.Threading.Timer(timer_cb, _index, TimeSpan.Zero, TimeSpan.FromSeconds(4));
                 while (true)
                 {
-                    if (Console.KeyAvailable)
-                    {
-                        var consoleKey = Console.ReadKey();
-                        if (consoleKey.Key == ConsoleKey.C && consoleKey.Modifiers == ConsoleModifiers.Control)
-                        {
-                            break;
-                        }
-                    }
 
                     sw.Restart();
                     var (ret, error) = WootingAnalogSDK.ReadAnalog(code_map[_index].Item2);//, devices.First().device_id);
